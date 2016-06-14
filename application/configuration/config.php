@@ -4,7 +4,7 @@
  */
 
 define ('HOME', $_SERVER['DOCUMENT_ROOT']);
-define ('APPLICATION', HOME . '/../application');
+define ('APPLICATION', HOME . '/application');
 define ('CONFIGURATION', APPLICATION . '/configuration');
 define ('VIEWS', APPLICATION . '/views');
 define ('LAYOUTS', VIEWS . '/layouts');

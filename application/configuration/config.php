@@ -12,13 +12,13 @@ define ('CONTROLLERS', APPLICATION . '/controllers');
 define ('MODELS', APPLICATION . '/models');
 
 
-define ('PUBLICA', HOME);
+define ('PUBLICA', HOME . "/public");
 define ('CSS', PUBLICA . '/css');
 define ('IMAGES', PUBLICA . '/img');
 define ('JAVASCRIPT', PUBLICA . '/js');
 
 
-define ('URLAPPLICATION', 'http://' . $_SERVER['HTTP_HOST']);
+define ('URLAPPLICATION', 'http://' . $_SERVER['HTTP_HOST'] . "/public");
 define ('URLCSS', URLAPPLICATION . '/css');
 define ('URLIMAGES', URLAPPLICATION . '/img');
 define ('URLJAVASCRIPT', URLAPPLICATION . '/js');

@@ -5,6 +5,7 @@
 
 define ('HOME', $_SERVER['DOCUMENT_ROOT'] . "/..");
 define ('APPLICATION', HOME . '/application');
+define ('CLASSES', APPLICATION . '/classes');
 define ('CONFIGURATION', APPLICATION . '/configuration');
 define ('VIEWS', APPLICATION . '/views');
 define ('LAYOUTS', VIEWS . '/layouts');
@@ -22,5 +23,11 @@ define ('URLAPPLICATION', 'http://' . $_SERVER['HTTP_HOST']);
 define ('URLCSS', URLAPPLICATION . '/css');
 define ('URLIMAGES', URLAPPLICATION . '/img');
 define ('URLJAVASCRIPT', URLAPPLICATION . '/js');
+
+define ('HOST', 'localhost');
+define ('USER', 'root');
+define ('PASSWORD', '');
+define ('DATABASE', 'agenda');
+define ('PORT', 3306);
 
 ?>

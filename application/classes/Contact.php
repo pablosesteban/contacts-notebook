@@ -88,6 +88,17 @@ class Contact {
     function addVisit() {
         $this->visits++;
     }
+    
+    function __toString() {
+        return "ID: " . $this->id . "<br />" .
+                "Name: " . $this->name . "<br />" .
+                "Last Name: " . $this->lastName . "<br />" .
+                "Address: " . $this->address . "<br />" .
+                "Phone Number: " . $this->phoneNum . "<br />" .
+                "E-mail: " . $this->mail . "<br />" .
+                "Image: " . $this->image . "<br />" .
+                "Visits: " . $this->visits . "<br />";
+    }
 }
 
 ?>

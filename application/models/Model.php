@@ -14,43 +14,43 @@ abstract class Model {
         $this->database = DATABASE;
     }
     
-    function getHost() {
+    protected function getHost() {
         return $this->host;
     }
 
-    function getUser() {
+    protected function getUser() {
         return $this->user;
     }
 
-    function getPassword() {
+    protected function getPassword() {
         return $this->password;
     }
 
-    function getDatabase() {
+    protected function getDatabase() {
         return $this->database;
     }
     
-    function getPort() {
+    protected function getPort() {
         return $this->port;
     }
     
-    function setHost($host) {
+    protected function setHost($host) {
         $this->host = $host;
     }
 
-    function setUser($user) {
+    protected function setUser($user) {
         $this->user = $user;
     }
 
-    function setPassword($password) {
+    protected function setPassword($password) {
         $this->password = $password;
     }
 
-    function setDatabase($database) {
+    protected function setDatabase($database) {
         $this->database = $database;
     }
     
-    function setPort($port) {
+    protected function setPort($port) {
         $this->port = $port;
     }
     

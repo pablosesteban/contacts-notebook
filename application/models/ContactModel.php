@@ -1,6 +1,6 @@
 <?php
 
-require_once './Model.php';
+require_once MODELS . '/Model.php';
 
 class ContactModel extends Model {
     function __construct() {
@@ -8,7 +8,7 @@ class ContactModel extends Model {
     }
     
     protected function createConnection() {
-        return $connection = mysqli_connect(parent::getHost(), parent::getUser(), parent::getPassword(), parent::getDatabase(), parent::getPort());
+        return mysqli_connect(parent::getHost(), parent::getUser(), parent::getPassword(), parent::getDatabase(), parent::getPort());
         // or die ("Could not conntect to MySQL." . PHP_EOL . "Debug ERRNO: " . mysqli_connect_errno() . "." . PHP_EOL . "Debug ERROR: " . mysqli_connect_error() . "." . PHP_EOL)
     }
     
@@ -18,8 +18,15 @@ class ContactModel extends Model {
     
     function insertContact(Contact $contact) {
         $connection = $this->createConnection();
+        if (!$connection) {
+            echo "Error: No se pudo conectar a MySQL." . "<br />";
+            echo "errno de depuración: " . mysqli_connect_errno() . "<br />";
+            echo "error de depuración: " . mysqli_connect_error() . "<br />";
+            exit;
+        }
+        echo "Información del host: " . mysqli_get_host_info($connection) . "<br />";
         
-        $query = "INSERT INTO contacto VALUES ('" .
+        $query = "INSERT INTO contacto (nombre, apellidos, direccion, telefono, email, imagen, contador_visitas) VALUES ('" .
                 $contact->getName() . "', '" .
                 $contact->getLastName() . "', '" .
                 $contact->getAddress() . "', '" .
@@ -28,9 +35,14 @@ class ContactModel extends Model {
                 $contact->getImage() . "', '" .
                 $contact->getVisits() . "')";
         
-        $result = mysqli_query($connection, $query);
+        echo "QUERY: ", $query, "<br />";
         
-        $this->closeConnection($connection);
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            echo "Insert error: ", $connection->error, "<br />";
+        }
+        
+        echo "Close connection: ", $this->closeConnection($connection), "<br />";
         
         return $result;
     }

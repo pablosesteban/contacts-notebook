@@ -35,6 +35,10 @@ class Model {
         return $this->port;
     }
     
+    public function getConnection() {
+        return $this->connection;
+    }
+    
     protected function setHost($host) {
         $this->host = $host;
     }
@@ -59,14 +63,20 @@ class Model {
         $connection = mysqli_connect($this->getHost(), $this->getUser(), $this->getPassword(), $this->getDatabase(), $this->getPort());
         
         if ($connection->connect_errno) {
-            exit($connection->connect_errno);
+            throw new Exception($connection->connect_errno);
         }
         
         $this->connection = $connection;
+        
+        return true;
     }
     
     protected function closeConnection() {
+        if (!$this->connection) {
+            throw new Exception("There is no previous connection to a database");
+        }
         
+        return mysqli_close($this->connection);
     }
 }
 

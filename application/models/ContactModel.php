@@ -19,8 +19,6 @@ class ContactModel extends Model {
                 $contact->getImage() . "', '" .
                 $contact->getVisits() . "')";
         
-        echo "QUERY: ", $query, "<br />";
-        
         $result = mysqli_query($this->getConnection(), $query);
         
         if (!$result) {
@@ -33,13 +31,35 @@ class ContactModel extends Model {
     }
     
     function removeContact(Contact $contact) {
+        parent::openConnection();
+        
         $query = "DELETE FROM contact WHERE id=" . $contact->getId();
-        echo $query;
+        
+        $result = mysqli_query($this->getConnection(), $query);
+        
+        if (!$result) {
+            throw new Exception("Deletion error: ", $this->getConnection()->error);
+        }
+        
+        parent::closeConnection();
+        
+        return $result;
     }
     
     function updateContact(Contact $contact) {
+        parent::openConnection();
+        
         $query = "UPDATE contact SET name='" . $contact->getName() . "', lastName='" . $contact->getLastName() . "', address='" . $contact->getAddress() . "', phone='" . $contact->getPhone() . "', email='" . $contact->getEmail() . "', image='" . $contact->getImage() . "' WHERE id=" . $contact->getId();
-        echo $query;
+        
+        $result = mysqli_query($this->getConnection(), $query);
+        
+        if (!$result) {
+            throw new Exception("Update error: ", $this->getConnection()->error);
+        }
+        
+        parent::closeConnection();
+        
+        return $result;
     }
     
     function getContacts() {
@@ -49,8 +69,26 @@ class ContactModel extends Model {
     }
     
     function searchContact(Contact $contact) {
+        parent::openConnection();
+        
         $query = "SELECT * FROM contact WHERE id=" . $contact->getId();
-        echo $query;
+        
+        $result =  mysqli_fetch_fields(mysqli_query($this->getConnection(), $query));
+        
+        if (count($result) == 0) {
+            throw new Exception("Search error: ", $this->getConnection()->error);
+        }
+        
+        parent::closeConnection();
+        
+        print_r($result);
+//        $returnedContact = new Contact();
+//        for ($index = 0; $index < count($result); $index++) {
+//            echo $result[$index], "<br />";
+//            
+//        }
+        
+        return $result;
     }
 }
 

@@ -11,6 +11,8 @@ $contact = new Contact("Pablo", "Santamarta Esteban", "C/ del Prado N20 1izda", 
 echo $contact, "<br />";
 
 $contactModel = new ContactModel();
-echo $contactModel->insertContact($contact), "<br />";
+echo $contactModel->removeContact($contact), "<br />";
+echo $contactModel->updateContact($contact), "<br />";
+echo $contactModel->searchContact($contact), "<br />";
 
 ?>

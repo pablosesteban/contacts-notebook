@@ -26,12 +26,12 @@ class ContactModel extends Model {
         }
         echo "Información del host: " . mysqli_get_host_info($connection) . "<br />";
         
-        $query = "INSERT INTO contacto (nombre, apellidos, direccion, telefono, email, imagen, contador_visitas) VALUES ('" .
+        $query = "INSERT INTO contact (name, lastName, address, phone, email, image, visits) VALUES ('" .
                 $contact->getName() . "', '" .
                 $contact->getLastName() . "', '" .
                 $contact->getAddress() . "', '" .
-                $contact->getPhoneNum() . "', '" .
-                $contact->getMail() . "', '" .
+                $contact->getPhone() . "', '" .
+                $contact->getEmail() . "', '" .
                 $contact->getImage() . "', '" .
                 $contact->getVisits() . "')";
         
@@ -48,19 +48,24 @@ class ContactModel extends Model {
     }
     
     function removeContact(Contact $contact) {
-        
+        $query = "DELETE FROM contact WHERE id=" . $contact->getId();
+        echo $query;
     }
     
     function updateContact(Contact $contact) {
-        
+        $query = "UPDATE contact SET name='" . $contact->getName() . "', lastName='" . $contact->getLastName() . "', address='" . $contact->getAddress() . "', phone='" . $contact->getPhone() . "', email='" . $contact->getEmail() . "', image='" . $contact->getImage() . "' WHERE id=" . $contact->getId();
+        echo $query;
     }
     
     function getContacts() {
+        $query = "SELECT * FROM contact";
+        
         
     }
     
     function searchContact(Contact $contact) {
-        
+        $query = "SELECT * FROM contact WHERE id=" . $contact->getId();
+        echo $query;
     }
 }
 

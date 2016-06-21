@@ -5,18 +5,18 @@ class Contact {
     private $name;
     private $lastName;
     private $address;
-    private $phoneNum;
-    private $mail;
+    private $phone;
+    private $email;
     private $image;
     private $visits;
     
-    function __construct($name = "", $lastName = "", $address = "", $phoneNum = "", $mail = "", $image = "", $id = 0, $visits = 0) {
+    function __construct($name = "", $lastName = "", $address = "", $phone = "", $email = "", $image = "", $id = 0, $visits = 0) {
         $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;
         $this->address = $address;
-        $this->phoneNum = $phoneNum;
-        $this->mail = $mail;
+        $this->phone = $phone;
+        $this->email = $email;
         $this->image = $image;
         $this->visits = $visits;
     }
@@ -37,12 +37,12 @@ class Contact {
         return $this->address;
     }
 
-    function getPhoneNum() {
-        return $this->phoneNum;
+    function getPhone() {
+        return $this->phone;
     }
 
-    function getMail() {
-        return $this->mail;
+    function getEmail() {
+        return $this->email;
     }
 
     function getImage() {
@@ -69,12 +69,12 @@ class Contact {
         $this->address = $address;
     }
 
-    function setPhoneNum($phoneNum) {
-        $this->phoneNum = $phoneNum;
+    function setPhone($phone) {
+        $this->phone = $phone;
     }
 
-    function setMail($mail) {
-        $this->mail = $mail;
+    function setEmail($email) {
+        $this->email = $email;
     }
 
     function setImage($image) {
@@ -94,8 +94,8 @@ class Contact {
                 "Name: " . $this->name . "<br />" .
                 "Last Name: " . $this->lastName . "<br />" .
                 "Address: " . $this->address . "<br />" .
-                "Phone Number: " . $this->phoneNum . "<br />" .
-                "E-mail: " . $this->mail . "<br />" .
+                "Phone: " . $this->phone . "<br />" .
+                "E-mail: " . $this->email . "<br />" .
                 "Image: " . $this->image . "<br />" .
                 "Visits: " . $this->visits . "<br />";
     }

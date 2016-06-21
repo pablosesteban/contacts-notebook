@@ -27,7 +27,7 @@ define ('URLJAVASCRIPT', URLAPPLICATION . '/js');
 define ('HOST', 'localhost');
 define ('USER', 'root');
 define ('PASSWORD', '');
-define ('DATABASE', 'agenda');
+define ('DATABASE', 'contacts_notebook');
 define ('PORT', 3306);
 
 ?>

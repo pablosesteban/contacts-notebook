@@ -1,36 +1,37 @@
 <?php
 
-abstract class Model {
+class Model {
     private $host;
     private $user;
     private $password;
     private $database;
     private $port;
+    private $connection;
     
-    protected function __construct() {
+    public function __construct() {
         $this->host = HOST;
         $this->user = USER;
         $this->password = PASSWORD;
         $this->database = DATABASE;
     }
     
-    protected function getHost() {
+    public function getHost() {
         return $this->host;
     }
 
-    protected function getUser() {
+    public function getUser() {
         return $this->user;
     }
 
-    protected function getPassword() {
+    public function getPassword() {
         return $this->password;
     }
 
-    protected function getDatabase() {
+    public function getDatabase() {
         return $this->database;
     }
     
-    protected function getPort() {
+    public function getPort() {
         return $this->port;
     }
     
@@ -54,8 +55,19 @@ abstract class Model {
         $this->port = $port;
     }
     
-    abstract protected function createConnection();
-    abstract protected function closeConnection($connection);
+    protected function openConnection() {
+        $connection = mysqli_connect($this->getHost(), $this->getUser(), $this->getPassword(), $this->getDatabase(), $this->getPort());
+        
+        if ($connection->connect_errno) {
+            exit($connection->connect_errno);
+        }
+        
+        $this->connection = $connection;
+    }
+    
+    protected function closeConnection() {
+        
+    }
 }
 
 ?>

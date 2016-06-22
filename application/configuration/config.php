@@ -16,13 +16,15 @@ define ('MODELS', APPLICATION . '/models');
 define ('PUBLICA', HOME . "/public");
 define ('CSS', PUBLICA . '/css');
 define ('IMAGES', PUBLICA . '/img');
+define ('IMAGES_DATA', IMAGES . '/data');
 define ('JAVASCRIPT', PUBLICA . '/js');
 
 
-define ('URLAPPLICATION', 'http://' . $_SERVER['HTTP_HOST']);
-define ('URLCSS', URLAPPLICATION . '/css');
-define ('URLIMAGES', URLAPPLICATION . '/img');
-define ('URLJAVASCRIPT', URLAPPLICATION . '/js');
+define ('URL_APPLICATION', 'http://' . $_SERVER['HTTP_HOST']);
+define ('URL_CSS', URL_APPLICATION . '/css');
+define ('URL_IMAGES', URL_APPLICATION . '/img');
+define ('URL_IMAGES_DATA', URL_IMAGES . '/data');
+define ('URL_JAVASCRIPT', URL_APPLICATION . '/js');
 
 define ('HOST', 'localhost');
 define ('USER', 'root');

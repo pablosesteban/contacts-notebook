@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href='<?= URLCSS ?>/styles.css' />
+        <link rel="stylesheet" href='<?= URL_CSS ?>/styles.css' />
         <title>Contacts Notebook</title>
     </head>
     <body>
@@ -14,8 +14,8 @@
         
         <nav>
             <ul>
-                <li><a href="#"><img src="<?= URLIMAGES ?>/home.png" alt="Main" /><span>Main</span></a></li>
-                <li><a href="#"><img src="<?= URLIMAGES ?>/list.png" alt="List Contact" /><span>List Contact</span></a></li>
-                <li><a href="#"><img src="<?= URLIMAGES ?>/add.png" alt="Insert Contact" /><span>Insert Contact</span></a></li>
+                <li><a href="#"><img src="<?= URL_IMAGES ?>/home.png" alt="Main" /><span>Main</span></a></li>
+                <li><a href="#"><img src="<?= URL_IMAGES ?>/list.png" alt="List Contact" /><span>List Contact</span></a></li>
+                <li><a href="#"><img src="<?= URL_IMAGES ?>/add.png" alt="Insert Contact" /><span>Insert Contact</span></a></li>
             </ul>
         </nav>

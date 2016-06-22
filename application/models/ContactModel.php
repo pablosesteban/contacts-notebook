@@ -30,6 +30,7 @@ class ContactModel extends Model {
         return $result;
     }
     
+    //Buscar por la PK!
     function removeContact(Contact $contact) {
         parent::openConnection();
         
@@ -46,6 +47,7 @@ class ContactModel extends Model {
         return $result;
     }
     
+    //Buscar por la PK!
     function updateContact(Contact $contact) {
         parent::openConnection();
         
@@ -63,32 +65,44 @@ class ContactModel extends Model {
     }
     
     function getContacts() {
+        parent::openConnection();
+        
         $query = "SELECT * FROM contact";
         
+        $result =  mysqli_query($this->getConnection(), $query);
         
+        if (!$result) {
+            throw new Exception("Get contacts error: ", $this->getConnection()->error);
+        }
+        
+        $contacts = [];
+        $index = 0;
+        while (($row = mysqli_fetch_row($result)) != null) {
+            $contacts[$index] = new Contact($row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[0], $row[7]);
+            
+            $index++;
+        }
+        
+        parent::closeConnection();
+        
+        return $contacts;
     }
     
+    //Buscar por la PK!
     function searchContact(Contact $contact) {
         parent::openConnection();
         
         $query = "SELECT * FROM contact WHERE id=" . $contact->getId();
         
-        $result =  mysqli_fetch_fields(mysqli_query($this->getConnection(), $query));
+        $result =  mysqli_query($this->getConnection(), $query);
         
-        if (count($result) == 0) {
+        if (!$result) {
             throw new Exception("Search error: ", $this->getConnection()->error);
         }
         
         parent::closeConnection();
         
-        print_r($result);
-//        $returnedContact = new Contact();
-//        for ($index = 0; $index < count($result); $index++) {
-//            echo $result[$index], "<br />";
-//            
-//        }
-        
-        return $result;
+        return mysqli_fetch_row($result);
     }
 }
 

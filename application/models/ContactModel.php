@@ -1,6 +1,7 @@
 <?php
 
 require_once MODELS . '/Model.php';
+require_once CLASSES . '/Contact.php';
 
 class ContactModel extends Model {
     function __construct() {
@@ -67,7 +68,8 @@ class ContactModel extends Model {
     function getContacts() {
         parent::openConnection();
         
-        $query = "SELECT * FROM contact";
+        //contactos ordenados por numero de visitas
+        $query = "SELECT * FROM contact ORDER BY visits DESC";
         
         $result =  mysqli_query($this->getConnection(), $query);
         
@@ -78,7 +80,7 @@ class ContactModel extends Model {
         $contacts = [];
         $index = 0;
         while (($row = mysqli_fetch_row($result)) != null) {
-            $contacts[$index] = new Contact($row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[0], $row[7]);
+            $contacts[$index] = new Contact($row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[0]);
             
             $index++;
         }

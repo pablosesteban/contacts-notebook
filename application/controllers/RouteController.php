@@ -1,17 +1,18 @@
 <?php
 
-require_once './ContactController.php';
+require_once CONTROLLERS . '/ContactController.php';
 
-class PathController {
+class RouteController {
     private $controller;
     
     function __construct() {
         $this->controller = new ContactController();
     }
     
-    function managePaths() {
-        if (isset($_REQUEST)) {
-            switch($_REQUEST) {
+    function manageRoute() {
+        if (count($_REQUEST) > 0) {
+            print_r($_REQUEST);
+            switch($_REQUEST['action']) {
                 case "insert":
                     $this->controller->insertContact();
                     break;

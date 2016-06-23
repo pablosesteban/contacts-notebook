@@ -10,7 +10,7 @@ class Contact {
     private $image;
     private $visits;
     
-    function __construct($name = "", $lastName = "", $address = "", $phone = "", $email = "", $image = "", $id = 0, $visits = 0) {
+    function __construct($name = "", $lastName = "", $address = "", $phone = "", $email = "", $image = "", $visits = 0, $id = 0) {
         $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;

@@ -10,8 +10,7 @@ class RouteController {
     }
     
     function manageRoute() {
-        if (count($_REQUEST) > 0) {
-            print_r($_REQUEST);
+        if (isset($_REQUEST['action'])) {
             switch($_REQUEST['action']) {
                 case "insert":
                     $this->controller->insertContact();
@@ -32,7 +31,7 @@ class RouteController {
                     $this->controller->listContact();
                     break;
                 case "show":
-                    $this->controller->showContact();
+                    $this->controller->showContact($_REQUEST['id']);
                     break;
             }
         }else {

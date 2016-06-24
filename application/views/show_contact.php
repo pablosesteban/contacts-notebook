@@ -13,16 +13,18 @@ require_once LAYOUTS . '/header.php';
 
             <article id="contacto">
                 <header>
-                    <img src="img/tux01.jpg" alt="Foto" />
+                    <img src="<?= URL_IMAGES ?>/tux01.jpg" alt="Foto" />
                 </header>
                 <ul>
-                    <li><span>Nombre:</span>Fernando</li>
-                    <li><span>Apellidos:</span>García García</li>
-                    <li><span>Dirección:</span>C\ Valdes Pedrita 12 - 1º A</li>
-                    <li><span>Teléfono:</span>985786543</li>
-                    <li><span>Email:</span>fernando.garcia@gmail.com</li>
+                    <?php if(isset($contact)): ?>
+                    <li><span>Name:</span><?= $contact[1] ?></li>
+                    <li><span>Last Name:</span><?= $contact[2] ?></li>
+                    <li><span>Address:</span><?= $contact[3] ?></li>
+                    <li><span>Phone:</span><?= $contact[4] ?></li>
+                    <li><span>E-mail:</span><?= $contact[5] ?></li>
+                    <?php endif; ?>
                 </ul>
-                <img src="img/mapa.jpg" src="mapa" />
+                <img src="<?= URL_IMAGES ?>/mapa.jpg" src="mapa" />
             </article>
         </section>
 

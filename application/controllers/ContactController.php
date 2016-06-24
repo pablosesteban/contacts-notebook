@@ -54,11 +54,18 @@ class ContactController {
     }
     
     function listContact() {
+        $data['contacts'] = $this->model->getContacts();
         
+        $this->viewCalling("list_contacts", $data);
     }
     
-    function showContact() {
+    function showContact($id) {
+        $contact = new Contact();
+        $contact->setId($id);
         
+        $contacts['contact'] = $this->model->searchContact($contact);
+        
+        $this->viewCalling("show_contact", $contacts);
     }
 }
 

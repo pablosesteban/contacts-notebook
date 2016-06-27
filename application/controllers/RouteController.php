@@ -19,13 +19,13 @@ class RouteController {
                     $this->controller->insertContactForm();
                     break;
                 case "edit":
-                    $this->controller->editContact();
+                    $this->controller->editContact($_REQUEST['id']);
                     break;
                 case "editView":
-                    $this->controller->editContactForm();
+                    $this->controller->editContactForm($_REQUEST['id']);
                     break;
                 case "remove":
-                    $this->controller->removeContact();
+                    $this->controller->removeContact($_REQUEST['id']);
                     break;
                 case "list":
                     $this->controller->listContact();

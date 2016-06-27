@@ -12,21 +12,27 @@ require_once LAYOUTS . '/header.php';
             </header>
 
             <article>
-                <form action="#" method="post">
+                <form action="<?= URL_APPLICATION ?>/index.php?action=insert" method="post">
                     <fieldset>
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre" value="" placeholder="Introduce nombre" required/>
-                        <label for="apellidos">Apellidos:</label>
-                        <input type="text" name="apellidos" value="" placeholder="Introduce apellidos" required/>
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" value="" placeholder="Introduce dirección" required/>
-                        <label for="telefono">Teléfono:</label>
-                        <input type="tel" name="telefono" value="" placeholder="Introduce teléfono" required/>
+                        <label for="nombre">Name:</label>
+                        <input type="text" name="name" value="" placeholder="Introducing name" required/>
+                        
+                        <label for="apellidos">Last Name:</label>
+                        <input type="text" name="lastName" value="" placeholder="Introducing last name" required/>
+                        
+                        <label for="direccion">Address:</label>
+                        <input type="text" name="address" value="" placeholder="Introducing address" required/>
+                        
+                        <label for="telefono">Phone:</label>
+                        <input type="tel" name="phone" value="" placeholder="Introducing phone" required/>
+                        
                         <label for="email">Email:</label>
-                        <input type="email" name="email" value="" placeholder="Introduce email" required/>
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" name="fichero" value="" />
-                        <input class="boton" type="submit" name="enviar" value="Enviar" />
+                        <input type="email" name="email" value="" placeholder="Introducing email" required/>
+                        
+                        <label for="imagen">Image:</label>
+                        <input type="file" name="image" value="" />
+                        
+                        <input class="boton" type="submit" name="send" value="Send" />
                     </fieldset>
                 </form>
             </article>

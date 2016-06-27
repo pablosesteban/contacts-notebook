@@ -28,7 +28,7 @@ require_once LAYOUTS . '/header.php';
                                     . "<td><img src=\"" . URL_IMAGES . "/tux01.jpg\" alt=\"Photo\" /></td>"
                                     . "<td>" . $contacts[$index]->getName() . "</td>"
                                     . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=show&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/view.png\" alt=\"View\" /></a></td>"
-                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=edit&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/edit.png\" alt=\"Edit\" /></a></td>"
+                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=editView&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/edit.png\" alt=\"Edit\" /></a></td>"
                                     . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=remove&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/delete.png\" alt=\"Delete\" /></a></td>"
                                     . "</tr>";
                                 }
@@ -37,7 +37,6 @@ require_once LAYOUTS . '/header.php';
                     </tbody>
                 </table>
             </article>
-            
         </section>
         
 <?php

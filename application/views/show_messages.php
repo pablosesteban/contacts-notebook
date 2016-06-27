@@ -12,7 +12,7 @@ require_once LAYOUTS . '/header.php';
             </header>
 
             <article>
-                <p id="mensaje">Contacto Insertado</p>
+                <p id="mensaje">SUCCESS!</p>
             </article>
         </section>
 

@@ -34,23 +34,41 @@ class ContactController {
     }
     
     function insertContact() {
+        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['image']);
         
+        if ($this->model->insertContact($contact)) {
+            $this->viewCalling("show_messages", []);
+        }
     }
     
     function insertContactForm() {
-        
+        $this->viewCalling("insert_contact", []);
     }
     
-    function editContact() {
+    function editContact($id) {
+        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['image'], $_POST['visits'], $id);
         
+        if ($this->model->updateContact($contact)) {
+            $this->viewCalling("show_messages", []);
+        }
     }
     
-    function editContactForm() {
+    function editContactForm($id) {
+        $contact = new Contact();
+        $contact->setId($id);
         
+        $contacts['contact'] = $this->model->searchContact($contact);
+        
+        $this->viewCalling("edit_contact", $contacts);
     }
     
-    function removeContact() {
+    function removeContact($id) {
+        $contact = new Contact();
+        $contact->setId($id);
         
+        if ($this->model->removeContact($contact)) {
+            $this->viewCalling("show_messages", []);
+        }
     }
     
     function listContact() {
@@ -63,7 +81,13 @@ class ContactController {
         $contact = new Contact();
         $contact->setId($id);
         
-        $contacts['contact'] = $this->model->searchContact($contact);
+        $contact = $this->model->searchContact($contact);
+        $visits = ++$contact[7];
+        $contact[7] = $visits;
+        
+        $this->model->updateContact(new Contact($contact[1], $contact[2], $contact[3], $contact[4], $contact[5], $contact[6], $contact[7], $contact[0]));
+        
+        $contacts['contact'] = $contact;
         
         $this->viewCalling("show_contact", $contacts);
     }

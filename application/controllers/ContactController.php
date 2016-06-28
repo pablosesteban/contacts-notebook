@@ -82,15 +82,14 @@ class ContactController {
         $contact->setId($id);
         
         $contactArr = $this->model->searchContact($contact);
-        $contactArr[7] = ++$contactArr[7];
         
-        $contact = new Contact($contactArr[1], $contactArr[2], $contactArr[3], $contactArr[4], $contactArr[5], $contactArr[6], $contactArr[7], $contactArr[0]);
+        $updateContact = new Contact($contactArr[1], $contactArr[2], $contactArr[3], $contactArr[4], $contactArr[5], $contactArr[6], $contactArr[7], $contactArr[0]);
+        $updateContact->addVisit();
         
-        $this->model->updateContact($contact);
+        $this->model->updateContact($updateContact);
         
+        $contactArr[7] = $updateContact->getVisits();
         $contacts['contact'] = $contactArr;
-        
-        print_r($contacts);
         
         $this->viewCalling("show_contact", $contacts);
     }

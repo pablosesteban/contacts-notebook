@@ -52,7 +52,7 @@ class ContactModel extends Model {
     function updateContact(Contact $contact) {
         parent::openConnection();
         
-        $query = "UPDATE contact SET name='" . $contact->getName() . "', lastName='" . $contact->getLastName() . "', address='" . $contact->getAddress() . "', phone='" . $contact->getPhone() . "', email='" . $contact->getEmail() . "', image='" . $contact->getImage() . "' WHERE id=" . $contact->getId();
+        $query = "UPDATE contact SET name='" . $contact->getName() . "', lastName='" . $contact->getLastName() . "', address='" . $contact->getAddress() . "', phone='" . $contact->getPhone() . "', email='" . $contact->getEmail() . "', image='" . $contact->getImage() . "', visits='" . $contact->getVisits() . "' WHERE id=" . $contact->getId();
         
         $result = mysqli_query($this->getConnection(), $query);
         

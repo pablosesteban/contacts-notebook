@@ -17,7 +17,7 @@ require_once LAYOUTS . '/header.php';
                     if (isset($contacts)) {
                         for ($index = 0; $index <= 2; $index++) {
                             if ($index < count($contacts)) {
-                                echo "<li><img src=\"" . URL_IMAGES . "/tux01.jpg\" alt=\"Insert Contact\" /><p>" . $contacts[$index]->getName() . "</p></li>";
+                                echo "<li><img src=\"" . URL_IMAGES_DATA . "/" . $contacts[$index]->getImage() . "\" alt=\"Insert Contact\" /><p>" . $contacts[$index]->getName() . "</p></li>";
                             }
                         }
                     }
@@ -31,7 +31,7 @@ require_once LAYOUTS . '/header.php';
                     if (isset($contacts)) {
                         for ($index = 3; $index <= 5; $index++) {
                             if ($index < count($contacts)) {
-                                echo "<li><img src=\"" . URL_IMAGES . "/tux01.jpg\" alt=\"Insert Contact\" /><p>" . $contacts[$index]->getName() . "</p></li>";
+                                echo "<li><img src=\"" . URL_IMAGES_DATA . "/" . $contacts[$index]->getImage() . "\" alt=\"Insert Contact\" /><p>" . $contacts[$index]->getName() . "</p></li>";
                             }
                         }
                     }

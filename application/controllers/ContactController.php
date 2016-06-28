@@ -23,8 +23,29 @@ class ContactController {
         ob_end_flush();
     }
     
-    function photoUpload() {
+    private function photoUpload() {
+        $imageName;
+        print_r($_FILES['image']);
         
+        if ($_FILES['image']['name']) {
+            if ($_FILES['image']['error'] != 0) {
+                throw new Exception("Upload photo error: " + $_FILES['image']['error']);
+            }
+            
+            $imageName = md5_file($_FILES['image']['tmp_name']);
+            
+            if (!$imageName) {
+                throw new Exception("Upload photo error: calculating md5");
+            }
+            
+            if (!move_uploaded_file($_FILES['image']['tmp_name'], IMAGES_DATA . "/$imageName")) {
+                throw new Exception("Upload photo error: moving file");
+            }
+        }else {
+            $imageName = "tux01.jpg";
+        }
+        
+        return $imageName;
     }
     
     function mainPage() {
@@ -34,7 +55,7 @@ class ContactController {
     }
     
     function insertContact() {
-        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['image']);
+        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload());
         
         if ($this->model->insertContact($contact)) {
             $this->viewCalling("show_messages", []);
@@ -46,7 +67,7 @@ class ContactController {
     }
     
     function editContact($id) {
-        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['image'], $_POST['visits'], $id);
+        $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload(), $_POST['visits'], $id);
         
         if ($this->model->updateContact($contact)) {
             $this->viewCalling("show_messages", []);

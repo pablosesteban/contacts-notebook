@@ -25,7 +25,7 @@ require_once LAYOUTS . '/header.php';
                             if (isset($contacts)) {
                                 for ($index = 0; $index < count($contacts); $index++) {
                                     echo "<tr>"
-                                    . "<td><img src=\"" . URL_IMAGES . "/tux01.jpg\" alt=\"Photo\" /></td>"
+                                    . "<td><img src=\"" . URL_IMAGES_DATA . "/" . $contacts[$index]->getImage() . "\" alt=\"Photo\" /></td>"
                                     . "<td>" . $contacts[$index]->getName() . "</td>"
                                     . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=show&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/view.png\" alt=\"View\" /></a></td>"
                                     . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=editView&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/edit.png\" alt=\"Edit\" /></a></td>"

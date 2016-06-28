@@ -13,7 +13,7 @@ require_once LAYOUTS . '/header.php';
 
             <article id="contacto">
                 <header>
-                    <img src="<?= URL_IMAGES ?>/tux01.jpg" alt="Foto" />
+                    <img src="<?= URL_IMAGES_DATA ?>/<?= $contact[6] ?>" alt="Foto" />
                 </header>
                 <ul>
                     <?php if(isset($contact)): ?>

@@ -292,3 +292,9 @@ footer > p {
     font-size: small;
     text-align: center;
 }
+
+#map {
+    width: 70%;
+    height: 400px;
+    margin: 20px auto;
+}

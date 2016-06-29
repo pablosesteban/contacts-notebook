@@ -14,7 +14,7 @@ require_once LAYOUTS . '/header.php';
             <article>
                 <form action="<?= URL_APPLICATION ?>/index.php?action=edit&id=<?= $contact[0] ?>" enctype="multipart/form-data" method="post">
                     <fieldset>
-                        <img src="img/tux01.jpg" alt="Foto Fernando" />
+                        <img src="<?= URL_IMAGES_DATA ?>/<?= $contact[6] ?>" alt="Contact Photo" />
 
                         <label for="nombre">Name:</label>
                         <input type="text" name="name" value="<?= $contact[1] ?>" placeholder="Introducing name" required/>
@@ -36,7 +36,7 @@ require_once LAYOUTS . '/header.php';
                         
                         <input type="hidden" name="visits" value="<?= $contact[7] ?>">
 
-                        <input class="boton" type="submit" name="send" value="Send" />
+                        <input class="boton" type="submit" name="send" value="Update" />
                     </fieldset>
                 </form>
             </article>

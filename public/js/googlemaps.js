@@ -2,8 +2,11 @@
 function initMap() {
     var mapElement = document.getElementById("map");
     
+    var coor = new google.maps.LatLng(43.5577323, -5.926964);
+    
     //GLOBAL VARIABLE
     map = new google.maps.Map(mapElement, {
+        center: coor,
         zoom: 9
     });
     

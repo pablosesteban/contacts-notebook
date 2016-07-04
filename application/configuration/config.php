@@ -28,7 +28,9 @@ define ('URL_JAVASCRIPT', URL_APPLICATION . '/js');
 
 define ('HOST', 'localhost');
 define ('USER', 'root');
+define ('USER_SALT', "1qTR3");
 define ('PASSWORD', 'Admin2020*');
+define ('PASSWORD_SALT', "o4GE7");
 define ('DATABASE', 'contacts_notebook');
 define ('PORT', 3306);
 

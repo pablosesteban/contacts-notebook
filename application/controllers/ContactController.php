@@ -92,7 +92,7 @@ class ContactController {
         }
     }
     
-    function listContact() {
+    function listContacts() {
         $data['contacts'] = $this->model->getContacts();
         
         $this->viewCalling("list_contacts", $data);

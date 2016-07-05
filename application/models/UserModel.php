@@ -73,11 +73,11 @@ class UserModel extends Model {
         
         $result =  mysqli_query($this->getConnection(), $query);
         
-        if (!$result) {
-            throw new Exception("Search error: ", $this->getConnection()->error);
-        }
-        
         parent::closeConnection();
+        
+        if ($result->num_rows == 0) {
+            return false;
+        }
         
         return mysqli_fetch_row($result);
     }
@@ -89,11 +89,11 @@ class UserModel extends Model {
         
         $result =  mysqli_query($this->getConnection(), $query);
         
-        if (!$result) {
-            throw new Exception("Search error: ", $this->getConnection()->error);
-        }
-        
         parent::closeConnection();
+        
+        if ($result->num_rows == 0) {
+            return false;
+        }
         
         return mysqli_fetch_row($result);
     }

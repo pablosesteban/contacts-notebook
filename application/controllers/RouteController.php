@@ -1,41 +1,53 @@
 <?php
 
 require_once CONTROLLERS . '/ContactController.php';
+require_once CONTROLLERS . '/UserController.php';
+require_once CONTROLLERS . '/SessionController.php';
 
 class RouteController {
-    private $controller;
+    private $contactController;
+    private $userController;
+    private $sessionController;
     
     function __construct() {
-        $this->controller = new ContactController();
+        $this->contactController = new ContactController();
+        $this->sessionController = new SessionController();
+        $this->userController = new UserController($this->sessionController);
     }
     
     function manageRoute() {
         if (isset($_REQUEST['action'])) {
             switch($_REQUEST['action']) {
                 case "insert":
-                    $this->controller->insertContact();
+                    $this->contactController->insertContact();
                     break;
                 case "insertView":
-                    $this->controller->insertContactForm();
+                    $this->contactController->insertContactForm();
                     break;
                 case "edit":
-                    $this->controller->editContact($_REQUEST['id']);
+                    $this->contactController->editContact($_REQUEST['id']);
                     break;
                 case "editView":
-                    $this->controller->editContactForm($_REQUEST['id']);
+                    $this->contactController->editContactForm($_REQUEST['id']);
                     break;
                 case "remove":
-                    $this->controller->removeContact($_REQUEST['id']);
+                    $this->contactController->removeContact($_REQUEST['id']);
                     break;
                 case "list":
-                    $this->controller->listContact();
+                    $this->contactController->listContacts();
                     break;
                 case "show":
-                    $this->controller->showContact($_REQUEST['id']);
+                    $this->contactController->showContact($_REQUEST['id']);
+                    break;
+                case "mainPage":
+                    $this->contactController->mainPage();
+                    break;
+                case "login":
+                    $this->sessionController->isLogged();
                     break;
             }
         }else {
-            $this->controller->mainPage();
+            $this->sessionController->login();
         }
     }
 }

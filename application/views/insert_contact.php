@@ -12,7 +12,7 @@ require_once LAYOUTS . '/header.php';
             </header>
 
             <article>
-                <form action="<?= URL_APPLICATION ?>/index.php?action=insert" enctype="multipart/form-data" method="post">
+                <form action="<?= URL_APPLICATION ?>/index.php?action=insertContact" enctype="multipart/form-data" method="post">
                     <fieldset>
                         <label for="nombre">Name:</label>
                         <input type="text" name="name" value="" placeholder="Introducing name" required/>

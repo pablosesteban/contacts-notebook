@@ -4,14 +4,18 @@ require_once MODELS . '/ContactModel.php';
 
 class ContactController {
     private $model;
+    private $sessionController;
     
     function __construct() {
         $this->model = new ContactModel();
+        $this->sessionController = new SessionController();
     }
     
     //$data: datos que requiere la vista
     //$view: vista que se va a llamar
     private function viewCalling($view, $data) {
+        $data['user'] = $this->sessionController->getSession();
+        
         ob_start();
         
         if (!empty($data)) {
@@ -25,7 +29,6 @@ class ContactController {
     
     private function photoUpload() {
         $imageName;
-        print_r($_FILES['image']);
         
         if ($_FILES['image']['name']) {
             if ($_FILES['image']['error'] != 0) {
@@ -58,19 +61,19 @@ class ContactController {
         $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload());
         
         if ($this->model->insertContact($contact)) {
-            $this->viewCalling("show_messages", []);
+            $this->viewCalling("show_messages", null);
         }
     }
     
     function insertContactForm() {
-        $this->viewCalling("insert_contact", []);
+        $this->viewCalling("insert_contact", null);
     }
     
     function editContact($id) {
         $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload(), $_POST['visits'], $id);
         
         if ($this->model->updateContact($contact)) {
-            $this->viewCalling("show_messages", []);
+            $this->viewCalling("show_messages", null);
         }
     }
     
@@ -88,7 +91,7 @@ class ContactController {
         $contact->setId($id);
         
         if ($this->model->removeContact($contact)) {
-            $this->viewCalling("show_messages", []);
+            $this->viewCalling("show_messages", null);
         }
     }
     

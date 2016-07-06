@@ -16,7 +16,7 @@
                         <input type="text" name="name" id="name" value="" required/>
                         
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" value="" required/>
+                        <input type="password" name="password" id="password" value=""/>
                         
                         <input class="boton" type="submit" name="enviar" id="enviar" value="Login" />
                     </fieldset>

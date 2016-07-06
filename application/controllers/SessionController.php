@@ -24,11 +24,11 @@ class SessionController {
     }
     
     function getUser() {
-        
+        return $this->user;
     }
     
     function setUser(User $user) {
-        
+        $this->user = $user;
     }
     
     function login() {
@@ -39,27 +39,40 @@ class SessionController {
         $userArray = $this->userModel->searchUserByName(new User($_REQUEST['name'], $_REQUEST['password']));
         
         if (!$userArray) {
-            $this->user = null;
-            
             return false;
         }else {
-            $this->user = new User($userArray[1], $userArray[2]);
+            $this->user = new User($_REQUEST['name'], $_REQUEST['password']);
             
             session_start();
             
-            $_SESSION['user']['userName'] = $userArray[1];
-            $_SESSION['user']['userRol'] = $this->user->getRol();
+            $_SESSION['user']['userName'] = $_REQUEST['name'];
+            $_SESSION['user']['userRol'] = $userArray[3];
             
             return true;
         }
     }
     
     function getSession() {
+        $session = [];
         
+        if (!isset($_SESSION['user'])) {
+            session_start();
+        }
+        
+        $session['user']['userName'] = $_SESSION['user']['userName'];
+        $session['user']['userRol'] = $_SESSION['user']['userRol'];
+        
+        return $session['user'];
     }
     
     function quit() {
+        session_start();
         
+        session_unset();
+        
+        session_destroy();
+        
+        setcookie(session_name(), '', 0, '/');
     }
 }
 

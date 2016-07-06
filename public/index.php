@@ -7,4 +7,7 @@ require_once CONTROLLERS . '/RouteController.php';
 $routeController = new RouteController();
 $routeController->manageRoute();
 
+//$model = new UserModel();
+//$model->insertUser(new User("guest", ""));
+
 ?>

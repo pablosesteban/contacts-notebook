@@ -12,6 +12,8 @@ class UserController {
     }
     
     private function viewCalling($view, $data) {
+        $data['user'] = $this->sessionController->getSession();
+        
         ob_start();
         
         if (!empty($data)) {
@@ -36,7 +38,9 @@ class UserController {
     }
     
     function listUsers() {
+        $users['users'] = $this->userModel->getUsers();
         
+        $this->viewCalling("list_users", $users);
     }
 }
 

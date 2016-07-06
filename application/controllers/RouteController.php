@@ -18,10 +18,10 @@ class RouteController {
     function manageRoute() {
         if (isset($_REQUEST['action'])) {
             switch($_REQUEST['action']) {
-                case "insert":
+                case "insertContact":
                     $this->contactController->insertContact();
                     break;
-                case "insertView":
+                case "insertContactView":
                     $this->contactController->insertContactForm();
                     break;
                 case "edit":
@@ -33,17 +33,29 @@ class RouteController {
                 case "remove":
                     $this->contactController->removeContact($_REQUEST['id']);
                     break;
-                case "list":
+                case "listContacts":
                     $this->contactController->listContacts();
                     break;
                 case "show":
                     $this->contactController->showContact($_REQUEST['id']);
                     break;
-                case "mainPage":
+                case "main":
                     $this->contactController->mainPage();
                     break;
                 case "login":
-                    $this->sessionController->isLogged();
+                    if ($this->sessionController->isLogged()) {
+                        $this->contactController->mainPage();
+                    }else {
+                        $this->sessionController->login();
+                    }
+                    
+                    break;
+                case "quit":
+                    $this->sessionController->quit();
+                    $this->sessionController->login();
+                    break;
+                case "listUsers":
+                    $this->userController->listUsers();
                     break;
             }
         }else {

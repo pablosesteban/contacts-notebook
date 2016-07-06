@@ -1,28 +1,29 @@
 <?php
-    require_once LAYOUTS.'/cabeza.php';
+
+    require_once LAYOUTS.'/header.php';
+    
 ?>
 
-<section>
-    <header>
-        <h2>
-            Usuarios:
-        </h2>
-    </header>
-
-    <article>
-        <?php if (isset($usuarios)): ?>
-            <ul>
-                <?php foreach ($usuarios as $usuario): ?>
-                    <li><a href="<?= URLAPLICACION."/index.php?accion=borrarUsuario&id=".$usuario->getId(); ?>"><img class="papelera" src="<?= URLIMAGENES ?>/delete.png" alt="Borrar" /></a><p><?= $usuario->getNombre() ?></p><p><?= $usuario->getRol(); ?></p></li>
+        <section>
+            <header>
+                <h2>Users:</h2>
+            </header>
+            
+            <article>
+                <?php if (isset($users)): ?>
+                <ul>
+                <?php foreach ($users as $user): ?>
+                <li><a href="<?= URL_APPLICATION . "/index.php?action=removeUser&id=" . $user->getId(); ?>"><img class="papelera" src="<?= URL_IMAGES ?>/delete.png" alt="Borrar" /></a><p><?= $user->getName() ?></p><p><?= $user->getRol(); ?></p></li>
                 <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p id="mensaje">No existen usuarios</p>
-        <?php endif; ?>
-    </article>
-
-</section>
+                </ul>
+                <?php else: ?>
+                <p id="mensaje">There are no users!</p>
+                <?php endif; ?>
+            </article>
+        </section>
 
 <?php
-    require_once LAYOUTS.'/pie.php';
+
+    require_once LAYOUTS.'/footer.php';
+    
 ?>

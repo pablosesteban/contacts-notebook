@@ -12,7 +12,7 @@ require_once LAYOUTS . '/header.php';
             </header>
 
             <article>
-                <form action="<?= URL_APPLICATION ?>/index.php?action=edit&id=<?= $contact[0] ?>" enctype="multipart/form-data" method="post">
+                <form action="<?= URL_APPLICATION ?>/index.php?action=editContact&id=<?= $contact[0] ?>" enctype="multipart/form-data" method="post">
                     <fieldset>
                         <img src="<?= URL_IMAGES_DATA ?>/<?= $contact[6] ?>" alt="Contact Photo" />
 

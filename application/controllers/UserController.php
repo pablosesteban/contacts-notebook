@@ -30,11 +30,17 @@ class UserController {
     }
     
     function insertUser() {
+        $newUser = new User($_POST['name'], $_POST['password'], $_POST['rol']);
         
+        $this->userModel->insertUser($newUser);
+        
+        $this->viewCalling("show_messages", null);
     }
     
-    function removeUser() {
+    function removeUser($id) {
+        $this->userModel->removeUser(new User("", "", "", $id));
         
+        $this->viewCalling("show_messages", null);
     }
     
     function listUsers() {

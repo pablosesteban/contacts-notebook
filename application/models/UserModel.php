@@ -25,7 +25,7 @@ class UserModel extends Model {
         return $result;
     }
     
-    function deleteUser(User $user) {
+    function removeUser(User $user) {
         parent::openConnection();
         
         $query = "DELETE FROM user WHERE id=" . $user->getId();
@@ -44,13 +44,12 @@ class UserModel extends Model {
     function getUsers() {
         parent::openConnection();
         
-        //contactos ordenados por numero de visitas
         $query = "SELECT * FROM user";
         
         $result =  mysqli_query($this->getConnection(), $query);
         
-        if (!$result) {
-            throw new Exception("Get contacts error: ", $this->getConnection()->error);
+        if ($result->num_rows == 0) {
+            return false;
         }
         
         $users = [];

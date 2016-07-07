@@ -13,7 +13,7 @@
                 <form action="<?= URL_APPLICATION . '/index.php?action=insertUser' ?>" method="post">
                     <fieldset>
                         <label for="nombre">Name: </label>
-                        <input type="text" name="nombre" id="nombre" value="" required/>
+                        <input type="text" name="name" id="nombre" value="" required/>
                         
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" value="" required/>
@@ -21,8 +21,8 @@
                         <label for="rol">Rol:</label>
                         
                         <select id="rol" name="rol">
-                            <option value="invitado">Guest</option>
-                            <option value="administrador">Administrator</option>
+                            <option value="guest">guest</option>
+                            <option value="admin">admin</option>
                         </select>
                         
                         <input class="boton" type="submit" name="enviar" id="enviar" value="Send" />

@@ -27,9 +27,9 @@ require_once LAYOUTS . '/header.php';
                                     echo "<tr>"
                                     . "<td><img src=\"" . URL_IMAGES_DATA . "/" . $contacts[$index]->getImage() . "\" alt=\"Photo\" /></td>"
                                     . "<td>" . $contacts[$index]->getName() . "</td>"
-                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=show&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/view.png\" alt=\"View\" /></a></td>"
-                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=editView&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/edit.png\" alt=\"Edit\" /></a></td>"
-                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=remove&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/delete.png\" alt=\"Delete\" /></a></td>"
+                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=showContact&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/view.png\" alt=\"View\" /></a></td>"
+                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=editContactView&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/edit.png\" alt=\"Edit\" /></a></td>"
+                                    . "<td><a href=\"" . URL_APPLICATION . "/index.php?action=removeContact&id=" . $contacts[$index]->getId() . "\"><img class=\"accion\" src=\"" . URL_IMAGES . "/delete.png\" alt=\"Delete\" /></a></td>"
                                     . "</tr>";
                                 }
                             }

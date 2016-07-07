@@ -24,19 +24,19 @@ class RouteController {
                 case "insertContactView":
                     $this->contactController->insertContactForm();
                     break;
-                case "edit":
+                case "editContact":
                     $this->contactController->editContact($_REQUEST['id']);
                     break;
-                case "editView":
+                case "editContactView":
                     $this->contactController->editContactForm($_REQUEST['id']);
                     break;
-                case "remove":
+                case "removeContact":
                     $this->contactController->removeContact($_REQUEST['id']);
                     break;
                 case "listContacts":
                     $this->contactController->listContacts();
                     break;
-                case "show":
+                case "showContact":
                     $this->contactController->showContact($_REQUEST['id']);
                     break;
                 case "main":
@@ -48,7 +48,6 @@ class RouteController {
                     }else {
                         $this->sessionController->login();
                     }
-                    
                     break;
                 case "quit":
                     $this->sessionController->quit();
@@ -56,6 +55,15 @@ class RouteController {
                     break;
                 case "listUsers":
                     $this->userController->listUsers();
+                    break;
+                case "insertUserView":
+                    $this->userController->insertUserForm();
+                    break;
+                case "insertUser":
+                    $this->userController->insertUser();
+                    break;
+                case "removeUser":
+                    $this->userController->removeUser($_REQUEST['id']);
                     break;
             }
         }else {

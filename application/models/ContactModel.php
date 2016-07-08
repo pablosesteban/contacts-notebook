@@ -8,6 +8,22 @@ class ContactModel extends Model {
         parent::__construct();
     }
     
+    private function existsContact(Contact $contact) {
+        parent::openConnection();
+        
+        $query = "SELECT * FROM contact WHERE name='" . $contact->getName() . "' AND lastName='" . $contact->getLastName() . "' AND address='" . $contact->getAddress() . "' AND phone='" . $contact->getPhone() . "' AND email='" . $contact->getEmail() . "' AND image='" . $contact->getImage() . "'";
+        
+        $result =  mysqli_query($this->getConnection(), $query);
+        
+        parent::closeConnection();
+        
+        if ($result->num_rows == 0) {
+            return false;
+        }
+        
+        return true;
+    }
+    
     function insertContact(Contact $contact) {
         parent::openConnection();
         

@@ -4,10 +4,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/../application/configuration/config.p
 
 require_once CONTROLLERS . '/RouteController.php';
 
-$routeController = new RouteController();
-$routeController->manageRoute();
+//$routeController = new RouteController();
+//$routeController->manageRoute();
 
-//$model = new UserModel();
-//$model->insertUser(new User("guest", ""));
+//$model = new ContactModel();
+//echo $model->existsContact(new Contact("Pablo", "Santamarta Esteban", "Avilés, España", "666595959", "pablosesteban@gmail.com", "tux01.jpg"));
 
 ?>

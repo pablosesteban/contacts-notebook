@@ -32,15 +32,29 @@ class UserController {
     function insertUser() {
         $newUser = new User($_POST['name'], $_POST['password'], $_POST['rol']);
         
-        $this->userModel->insertUser($newUser);
+        if(!$this->userModel->searchUserByName($newUser)) {
+            $this->userModel->insertUser($newUser);
+            
+            $msg['message'] = "User inserted successfully";
+        }else {
+            $msg['message'] = "User already exists";
+        }
         
-        $this->viewCalling("show_messages", null);
+        $this->viewCalling("show_messages", $msg);
     }
     
     function removeUser($id) {
-        $this->userModel->removeUser(new User("", "", "", $id));
+        $session = $this->sessionController->getSession();
         
-        $this->viewCalling("show_messages", null);
+        if ($session['userId'] != $id) {
+            $this->userModel->removeUser(new User("", "", "", $id));
+            
+            $message['message'] = "User removed successfully";
+        }else {
+            $message['message'] = "Cannot remove current user";
+        }
+        
+        $this->viewCalling("show_messages", $message);
     }
     
     function listUsers() {

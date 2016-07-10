@@ -22,7 +22,7 @@ require_once LAYOUTS . '/header.php';
                     </thead>
                     <tbody>
                         <?php
-                            if (isset($contacts)) {
+                            if (isset($contacts) && $contacts != false) {
                                 for ($index = 0; $index < count($contacts); $index++) {
                                     echo "<tr>"
                                     . "<td><img src=\"" . URL_IMAGES_DATA . "/" . $contacts[$index]->getImage() . "\" alt=\"Photo\" /></td>"

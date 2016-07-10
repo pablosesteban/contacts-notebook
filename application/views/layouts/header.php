@@ -14,6 +14,8 @@
                 <?php if(isset($_SESSION['user'])): ?>
                 <p id="usuario_login"><?= $user['userName']; ?></p>
                 <p><a href="<?= URL_APPLICATION . "/index.php?action=quit" ?>">Logout</a></p>
+                <?php else: ?>
+                <p><a href="<?= URL_APPLICATION . "/index.php?action=login" ?>">Login</a></p>
                 <?php endif; ?>
         </header>
         

@@ -6,9 +6,7 @@ require_once LAYOUTS . '/header.php';
         
         <section>
             <header>
-                <h2>
-                    Contact Form - Insert
-                </h2>
+                <h2>Insert Contact:</h2>
             </header>
 
             <article>

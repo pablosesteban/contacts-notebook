@@ -45,6 +45,7 @@ class SessionController {
             
             session_start();
             
+            $_SESSION['user']['userId'] = $userArray[0];
             $_SESSION['user']['userName'] = $_REQUEST['name'];
             $_SESSION['user']['userRol'] = $userArray[3];
             
@@ -59,6 +60,7 @@ class SessionController {
             session_start();
         }
         
+        $session['user']['userId'] = $_SESSION['user']['userId'];
         $session['user']['userName'] = $_SESSION['user']['userName'];
         $session['user']['userRol'] = $_SESSION['user']['userRol'];
         

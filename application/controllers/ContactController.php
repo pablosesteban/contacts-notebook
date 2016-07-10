@@ -52,7 +52,7 @@ class ContactController {
     }
     
     function mainPage() {
-        $data['contacts'] = $this->model->getContacts();
+        $data['contacts'] = $this->model->getUserContacts();
         
         $this->viewCalling("main_page", $data);
     }
@@ -60,9 +60,11 @@ class ContactController {
     function insertContact() {
         $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload());
         
-        if ($this->model->insertContact($contact)) {
-            $this->viewCalling("show_messages", null);
-        }
+        $this->model->insertContact($contact);
+        
+        $msg['message'] = "Contact inserted successfully";
+        
+        $this->viewCalling("show_messages", $msg);
     }
     
     function insertContactForm() {
@@ -73,7 +75,9 @@ class ContactController {
         $contact = new Contact($_POST['name'], $_POST['lastName'], $_POST['address'], $_POST['phone'], $_POST['email'], $this->photoUpload(), $_POST['visits'], $id);
         
         if ($this->model->updateContact($contact)) {
-            $this->viewCalling("show_messages", null);
+            $msg['message'] = "Contact edited successfully";
+            
+            $this->viewCalling("show_messages", $msg);
         }
     }
     
@@ -91,12 +95,15 @@ class ContactController {
         $contact->setId($id);
         
         if ($this->model->removeContact($contact)) {
-            $this->viewCalling("show_messages", null);
+            $msg['message'] = "Contact removed successfully";
+            
+            $this->viewCalling("show_messages", $msg);
         }
     }
     
     function listContacts() {
-        $data['contacts'] = $this->model->getContacts();
+//        $data['contacts'] = $this->model->getContacts();
+        $data['contacts'] = $this->model->getUserContacts();
         
         $this->viewCalling("list_contacts", $data);
     }

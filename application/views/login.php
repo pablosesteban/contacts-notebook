@@ -21,6 +21,8 @@
                         <input class="boton" type="submit" name="enviar" id="enviar" value="Login" />
                     </fieldset>
                 </form>
+                
+                <a href="<?= URL_APPLICATION ?>/index.php?action=account">Create an account</a>
             </article>
         </section>
 

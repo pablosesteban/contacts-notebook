@@ -11,9 +11,25 @@ class ContactModel extends Model {
     private function existsContact(Contact $contact) {
         parent::openConnection();
         
-        $query = "SELECT * FROM contact WHERE name='" . $contact->getName() . "' AND lastName='" . $contact->getLastName() . "' AND address='" . $contact->getAddress() . "' AND phone='" . $contact->getPhone() . "' AND email='" . $contact->getEmail() . "' AND image='" . $contact->getImage() . "'";
+        $query = "SELECT id FROM contact WHERE name='" . $contact->getName() . "' AND lastName='" . $contact->getLastName() . "' AND address='" . $contact->getAddress() . "' AND phone='" . $contact->getPhone() . "' AND email='" . $contact->getEmail() . "' AND image='" . $contact->getImage() . "'";
         
         $result =  mysqli_query($this->getConnection(), $query);
+        
+        parent::closeConnection();
+        
+        if ($result->num_rows == 0) {
+            return false;
+        }
+        
+        return mysqli_fetch_row($result)[0];
+    }
+    
+    private function existsContactUser($userId, $contactId) {
+        parent::openConnection();
+        
+        $query = "SELECT * FROM contact_user WHERE userId='" . $userId . "' AND contactId='" . $contactId . "'";
+        
+        $result = mysqli_query($this->getConnection(), $query);
         
         parent::closeConnection();
         
@@ -25,26 +41,47 @@ class ContactModel extends Model {
     }
     
     function insertContact(Contact $contact) {
-        parent::openConnection();
+        session_start();
         
-        $query = "INSERT INTO contact (name, lastName, address, phone, email, image, visits) VALUES ('" .
+        $id = $this->existsContact($contact);
+        
+        if (!$id) {
+            parent::openConnection();
+            
+            $query = "INSERT INTO contact (name, lastName, address, phone, email, image, visits) VALUES ('" .
                 $contact->getName() . "', '" .
                 $contact->getLastName() . "', '" .
                 $contact->getAddress() . "', '" .
                 $contact->getPhone() . "', '" .
                 $contact->getEmail() . "', '" .
                 $contact->getImage() . "', '" .
-                $contact->getVisits() . "')";
-        
-        $result = mysqli_query($this->getConnection(), $query);
-        
-        if (!$result) {
-            throw new Exception("Insertion error: ", $this->getConnection()->error);
+                $contact->getVisits() .
+            "')";
+            
+            $result = mysqli_query($this->getConnection(), $query);
+            
+            if (!$result) {
+                throw new Exception("Contact insertion error: ", $this->getConnection()->error);
+            }
+            
+            parent::closeConnection();
         }
         
-        parent::closeConnection();
+        if(!$this->existsContactUser($_SESSION['user']['userId'], $id)) {
+            parent::openConnection();
+            
+            $query = "INSERT INTO contact_user (userId, contactId) VALUES ('" . $_SESSION['user']['userId'] . "', '" . $id . "')";
+            
+            $result = mysqli_query($this->getConnection(), $query);
+            
+            if (!$result) {
+                throw new Exception("Contact-User insertion error");
+            }
+            
+            parent::closeConnection();
+        }
         
-        return $result;
+        return true;
     }
     
     //Buscar por la PK!
@@ -79,6 +116,35 @@ class ContactModel extends Model {
         parent::closeConnection();
         
         return $result;
+    }
+    
+    public function getUserContacts() {
+        session_start();
+        
+        parent::openConnection();
+        
+        $query = "SELECT contactId FROM contact_user WHERE userID='" . $_SESSION['user']['userId'] . "'";
+        
+        $contactIds = mysqli_query($this->getConnection(), $query);
+        
+        if ($contactIds->num_rows == 0) {
+            return false;
+        }
+        
+        $contacts = [];
+        for ($i = 0; $i < $contactIds->num_rows; $i++) {
+            $query = "SELECT * FROM contact WHERE id='" . mysqli_fetch_row($contactIds)[0] . "'";
+            
+            $contact = mysqli_query($this->getConnection(), $query);
+            
+            $row = mysqli_fetch_row($contact);
+            
+            $contacts[$i] = new Contact($row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[0]);
+        }
+        
+        parent::closeConnection();
+        
+        return $contacts;
     }
     
     function getContacts() {

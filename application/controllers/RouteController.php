@@ -65,6 +65,9 @@ class RouteController {
                 case "removeUser":
                     $this->userController->removeUser($_REQUEST['id']);
                     break;
+                case "account":
+                    $this->userController->insertUserForm();
+                    break;
             }
         }else {
             $this->sessionController->login();

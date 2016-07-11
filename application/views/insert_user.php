@@ -6,7 +6,7 @@
 
         <section>
             <header>
-                <?php if($_SESSION['user']['userName']): ?>
+                <?php if(isset($_SESSION['user'])): ?>
                 <h2>Insert User:</h2>
                 <?php else: ?>
                 <h2>Create User:</h2>
@@ -22,7 +22,7 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" value="" required/>
                         
-                        <?php if($_SESSION['user']['userName']): ?>
+                        <?php if(isset($_SESSION['user'])): ?>
                         <label for="rol">Rol:</label>
                         
                         <select id="rol" name="rol">

@@ -61,10 +61,12 @@ class ContactModel extends Model {
             $result = mysqli_query($this->getConnection(), $query);
             
             if (!$result) {
-                throw new Exception("Contact insertion error: ", $this->getConnection()->error);
+                throw new Exception("Contact insertion error: " . mysqli_error($this->getConnection()));
             }
             
             parent::closeConnection();
+            
+            $id = $this->existsContact($contact);
         }
         
         if(!$this->existsContactUser($_SESSION['user']['userId'], $id)) {
@@ -75,7 +77,7 @@ class ContactModel extends Model {
             $result = mysqli_query($this->getConnection(), $query);
             
             if (!$result) {
-                throw new Exception("Contact-User insertion error");
+                throw new Exception("Contact-User insertion error: " . mysqli_error($this->getConnection()));
             }
             
             parent::closeConnection();
@@ -88,12 +90,24 @@ class ContactModel extends Model {
     function removeContact(Contact $contact) {
         parent::openConnection();
         
-        $query = "DELETE FROM contact WHERE id=" . $contact->getId();
+        $query = "SELECT userId FROM contact_user WHERE contactId='" . $contact->getId() . "'";
+        
+        $userIds = mysqli_query($this->getConnection(), $query);
+        
+        if ($userIds->num_rows > 1) {
+            if(!isset($_SESSION['user'])) {
+                session_start();
+            }
+            
+            $query = "DELETE FROM contact_user WHERE userId='" . $_SESSION['user']['userId'] . "' AND contactId='" . $contact->getId() . "'";
+        }else {
+            $query = "DELETE FROM contact WHERE id=" . $contact->getId();
+        }
         
         $result = mysqli_query($this->getConnection(), $query);
         
         if (!$result) {
-            throw new Exception("Deletion error: ", $this->getConnection()->error);
+            throw new Exception("Deletion error: " . mysqli_error($this->getConnection()));
         }
         
         parent::closeConnection();
@@ -119,7 +133,9 @@ class ContactModel extends Model {
     }
     
     public function getUserContacts() {
-        session_start();
+        if (!isset($_SESSION['user'])) {
+            session_start();
+        }
         
         parent::openConnection();
         

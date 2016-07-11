@@ -60,11 +60,15 @@ class SessionController {
             session_start();
         }
         
-        $session['user']['userId'] = $_SESSION['user']['userId'];
-        $session['user']['userName'] = $_SESSION['user']['userName'];
-        $session['user']['userRol'] = $_SESSION['user']['userRol'];
+        if (isset($_SESSION['user'])) {
+            $session['user']['userId'] = $_SESSION['user']['userId'];
+            $session['user']['userName'] = $_SESSION['user']['userName'];
+            $session['user']['userRol'] = $_SESSION['user']['userRol'];
+            
+            return $session['user'];
+        }
         
-        return $session['user'];
+        return $session;
     }
     
     function quit() {

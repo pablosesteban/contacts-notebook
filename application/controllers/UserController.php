@@ -26,7 +26,7 @@ class UserController {
     }
     
     function insertUserForm() {
-        $this->viewCalling("insert_user", []);
+        $this->viewCalling("insert_user", null);
     }
     
     function insertUser() {

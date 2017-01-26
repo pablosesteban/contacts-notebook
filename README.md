@@ -1,2 +1,2 @@
 # contacts-notebook
-My project for Web Development Course
+Project for Developing Applications with Web Technologies, Certificate of Competence Level 3
